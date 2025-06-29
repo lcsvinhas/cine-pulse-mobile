@@ -1,45 +1,49 @@
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import { styles } from './style'
 import { useState } from 'react'
 
-export default function Login() {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
+export default function Contato() {
+    const [nome, setNome] = useState("")
+    const [email, setEmail] = useState("")
 
-    function handleLogin() {
-        if (!username || !password) {
-            Alert.alert("Erro", "Preencha todos os campos.")
+    function handleSave(): void {
+        if (!nome || !email) {
+            Alert.alert("Preencha os campos corretamente!")
             return
         }
 
-        Alert.alert("Login", `Bem-vindo, ${username}!`)
-        setUsername('')
-        setPassword('')
+        console.log(`Nome: ${nome}`)
+        console.log(`Email: ${email}`)
+
+        Alert.alert("Contato enviado com sucesso!")
+
+        setNome("")
+        setEmail("")
     }
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.titulo}>Login</Text>
+        <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
+            <Text style={styles.titulo}>Entre em Contato</Text>
 
             <TextInput
                 style={styles.input}
-                placeholder="Username"
-                value={username}
-                onChangeText={setUsername}
+                placeholder="Digite seu nome"
+                value={nome}
+                onChangeText={setNome}
+            />
+
+            <TextInput
+                style={styles.input}
+                placeholder="Digite seu email"
+                value={email}
+                onChangeText={setEmail}
+                keyboardType="email-address"
                 autoCapitalize="none"
             />
 
-            <TextInput
-                style={styles.input}
-                placeholder="Password"
-                value={password}
-                onChangeText={setPassword}
-                secureTextEntry
-            />
-
-            <TouchableOpacity style={styles.botao} onPress={handleLogin}>
-                <Text style={styles.botaoTexto}>Entrar</Text>
+            <TouchableOpacity style={styles.botao} onPress={handleSave}>
+                <Text style={styles.botaoTexto}>Enviar</Text>
             </TouchableOpacity>
-        </View>
+        </KeyboardAvoidingView>
     )
 }
