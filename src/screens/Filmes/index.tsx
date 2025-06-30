@@ -2,9 +2,12 @@ import { Text, Image, TouchableOpacity, View, Modal, FlatList } from 'react-nati
 import { styles } from './style'
 import { useEffect, useState } from 'react'
 import api from '../../services/api'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useRoute, RouteProp } from '@react-navigation/native'
+import { Feather } from '@expo/vector-icons'
 
 interface filmeData {
-    id: string,
+    id: number,
     titulo: string,
     sinopse: string,
     genero: string,
@@ -17,10 +20,22 @@ interface filmeData {
     }[]
 }
 
+interface usuarioData {
+    id: number
+    nome: string
+}
+
+type RootStackParamList = {
+    Filmes: { userId?: string }
+}
+
 export default function Filmes() {
+    const route = useRoute<RouteProp<RootStackParamList, 'Filmes'>>();
     const [filmes, setFilmes] = useState<filmeData[]>([])
     const [modalVisible, setModalVisible] = useState(false)
     const [filmeSelecionado, setFilmeSelecionado] = useState<filmeData | null>(null)
+    const [nomeUsuario, setNomeUsuario] = useState("")
+
 
     useEffect(() => {
         const buscar = async () => {
@@ -34,6 +49,21 @@ export default function Filmes() {
         buscar()
     }, [])
 
+    useEffect(() => {
+        async function buscarUsuario() {
+            try {
+                const userId = route.params?.userId ?? (await AsyncStorage.getItem('userId'))
+                if (!userId) return;
+
+                const response = await api.get<usuarioData>(`/usuarios/${userId}`);
+                setNomeUsuario(response.data.nome);
+            } catch (error) {
+                console.error('Erro ao buscar nome do usuário:', error);
+            }
+        }
+        buscarUsuario()
+    }, [route.params?.userId])
+
     const abrirModal = (filme: filmeData) => {
         setFilmeSelecionado(filme)
         setModalVisible(true)
@@ -41,6 +71,14 @@ export default function Filmes() {
 
     return (
         <View style={{ flex: 1 }}>
+            {nomeUsuario && (
+                <View style={styles.usuarioContainer}>
+                    <Feather name="user" size={20} color="#333" style={{ marginRight: 8 }} />
+                    <Text style={styles.oláUsuario}>Olá, {nomeUsuario}</Text>
+                </View>
+            )}
+
+
             <FlatList
                 data={filmes}
                 keyExtractor={(item) => item.id.toString()}
@@ -49,7 +87,7 @@ export default function Filmes() {
                 renderItem={({ item }) => (
                     <TouchableOpacity style={styles.card} onPress={() => abrirModal(item)}>
                         <Image
-                            source={{ uri: `http://localhost:8080/filmes/${item.id}/foto` }}
+                            source={{ uri: `http://192.168.100.179:8080/filmes/${item.id}/foto` }}
                             style={styles.capa}
                         />
                         <Text style={styles.titulo}>{item.titulo}</Text>
@@ -58,6 +96,7 @@ export default function Filmes() {
                     </TouchableOpacity>
                 )}
             />
+
             <Modal
                 visible={modalVisible}
                 animationType="fade"

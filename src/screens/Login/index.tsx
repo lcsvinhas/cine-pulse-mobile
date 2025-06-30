@@ -1,48 +1,63 @@
 import { View, Text, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import { styles } from './style'
 import { useState } from 'react'
+import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import api from '../../services/api'
 
-export default function Contato() {
-    const [nome, setNome] = useState("")
-    const [email, setEmail] = useState("")
+export default function Login({ navigation }: any) {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
 
-    function handleSave(): void {
-        if (!nome || !email) {
-            Alert.alert("Preencha os campos corretamente!")
+    async function handleLogin() {
+        if (!username || !password) {
+            Alert.alert("Preencha os campos de login corretamente!")
             return
         }
 
-        console.log(`Nome: ${nome}`)
-        console.log(`Email: ${email}`)
+        try {
+            const response = await api.post('auth/login', {
+                username,
+                password
+            })
 
-        Alert.alert("Contato enviado com sucesso!")
+            const { token, id } = response.data
 
-        setNome("")
-        setEmail("")
+            await AsyncStorage.setItem('token', token)
+            await AsyncStorage.setItem('userId', id.toString());
+
+            Alert.alert("Login realizado com sucesso!")
+
+            navigation.navigate('Filmes', { userId: id.toString() })
+
+        } catch (error) {
+            console.error(error)
+            Alert.alert("Erro ao fazer login. Verifique suas credenciais.")
+        }
     }
 
     return (
         <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
-            <Text style={styles.titulo}>Entre em Contato</Text>
+            <Text style={styles.titulo}>Login</Text>
 
             <TextInput
                 style={styles.input}
-                placeholder="Digite seu nome"
-                value={nome}
-                onChangeText={setNome}
-            />
-
-            <TextInput
-                style={styles.input}
-                placeholder="Digite seu email"
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
+                placeholder="Usuário"
+                value={username}
+                onChangeText={setUsername}
                 autoCapitalize="none"
             />
 
-            <TouchableOpacity style={styles.botao} onPress={handleSave}>
-                <Text style={styles.botaoTexto}>Enviar</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Senha"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+            />
+
+            <TouchableOpacity style={styles.botao} onPress={handleLogin}>
+                <Text style={styles.botaoTexto}>Entrar</Text>
             </TouchableOpacity>
         </KeyboardAvoidingView>
     )
