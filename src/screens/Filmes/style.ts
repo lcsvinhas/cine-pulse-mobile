@@ -38,13 +38,14 @@ export const styles = StyleSheet.create({
     },
     modalOverlay: {
         flex: 1,
-        backgroundColor: cores.texto,
+        backgroundColor: 'rgba(0,0,0,0.6)', // um fundo preto semi-transparente para modal
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
     },
     modalContainer: {
-        width: '100%',
+        width: '90%',
+        maxHeight: '80%',
         backgroundColor: cores.fundo,
         borderRadius: 12,
         padding: 20,
@@ -69,5 +70,22 @@ export const styles = StyleSheet.create({
         color: cores.fundo,
         fontSize: 16,
     },
+    usuarioContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        margin: 16,
+    },
+    oláUsuario: {
+        fontSize: 22,
+        fontWeight: '600',
+        color: '#1E90FF',
+        marginVertical: 16,
+        textAlign: 'left',
+        letterSpacing: 0.5,
+        textShadowColor: 'rgba(0,0,0,0.2)',
+        textShadowOffset: { width: 1, height: 1 },
+        textShadowRadius: 2,
+    }
 })
+
 
