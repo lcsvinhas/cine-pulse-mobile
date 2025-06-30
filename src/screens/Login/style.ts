@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native'
+import { cores } from '../../styles/cores'
 
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
         justifyContent: 'center',
-        backgroundColor: '#f2f2f2'
+        backgroundColor: cores.fundo
     },
     titulo: {
         fontSize: 24,
@@ -14,21 +15,30 @@ export const styles = StyleSheet.create({
         textAlign: 'center'
     },
     input: {
-        backgroundColor: '#fff',
+        backgroundColor: cores.cardFundo,
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: cores.cardSombra,
+        padding: 10,
+        borderRadius: 8,
+        marginBottom: 15
+    },
+    inputMensagem: {
+        height: 150,
+        backgroundColor: cores.cardFundo,
+        borderWidth: 1,
+        borderColor: cores.cardSombra,
         padding: 10,
         borderRadius: 8,
         marginBottom: 15
     },
     botao: {
-        backgroundColor: '#6371BF',
+        backgroundColor: cores.footer,
         padding: 15,
         borderRadius: 8,
         alignItems: 'center'
     },
     botaoTexto: {
-        color: '#fff',
+        color: cores.cardFundo,
         fontWeight: 'bold'
     },
     linkTexto: {

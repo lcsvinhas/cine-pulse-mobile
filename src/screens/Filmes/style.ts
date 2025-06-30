@@ -2,6 +2,10 @@ import { StyleSheet } from 'react-native'
 import { cores } from '../../styles/cores'
 
 export const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: cores.fundo
+    },
     grid: {
         paddingHorizontal: 12,
         paddingBottom: 16,
@@ -9,12 +13,14 @@ export const styles = StyleSheet.create({
     card: {
         flex: 1,
         margin: 8,
-        backgroundColor: cores.card,
+        backgroundColor: 'white',
+        borderColor: cores.cardSombra,
+        borderWidth: 1,
         borderRadius: 12,
         padding: 8,
         alignItems: 'center',
         elevation: 3,
-        shadowColor: cores.sombra,
+        shadowColor: cores.cardSombra,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
@@ -46,7 +52,7 @@ export const styles = StyleSheet.create({
     modalContainer: {
         width: '90%',
         maxHeight: '80%',
-        backgroundColor: cores.card,
+        backgroundColor: cores.cardBorda,
         borderRadius: 12,
         padding: 20,
     },
@@ -61,7 +67,7 @@ export const styles = StyleSheet.create({
     },
     modalFechar: {
         marginTop: 16,
-        backgroundColor: cores.header,
+        backgroundColor: cores.footer,
         paddingVertical: 10,
         borderRadius: 8,
         alignItems: 'center',
@@ -71,18 +77,20 @@ export const styles = StyleSheet.create({
         fontSize: 16,
     },
     usuarioContainer: {
+        backgroundColor: cores.header,
         flexDirection: 'row',
         alignItems: 'center',
-        margin: 16,
     },
     oláUsuario: {
+        padding: 10,
+        paddingTop: 20,
         fontSize: 22,
-        fontWeight: '600',
-        color: cores.texto,
+        fontWeight: '400',
+        color: cores.cardFundo,
         marginVertical: 16,
         textAlign: 'left',
         letterSpacing: 0.5,
-        textShadowColor: cores.sombra,
+        textShadowColor: cores.modal,
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 2,
     }

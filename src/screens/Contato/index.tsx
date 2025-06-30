@@ -2,6 +2,8 @@ import { View, Text, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } 
 import { styles } from './style'
 import { useState } from 'react'
 import api from '../../services/api'
+import { Feather } from '@expo/vector-icons'
+import { cores } from '../../styles/cores'
 
 export default function Contato() {
     const [nome, setNome] = useState("")
@@ -35,6 +37,8 @@ export default function Contato() {
 
     return (
         <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
+            <Feather name="message-square" size={100} color={cores.footer} style={{ margin: 0, textAlign: 'center' }} />
+
             <Text style={styles.titulo}>Contato</Text>
 
             <TextInput
@@ -54,7 +58,7 @@ export default function Contato() {
             />
 
             <TextInput
-                style={styles.input}
+                style={styles.inputMensagem}
                 placeholder="Mensagem"
                 value={mensagem}
                 onChangeText={setMensagem}
@@ -62,7 +66,7 @@ export default function Contato() {
             />
 
             <TouchableOpacity style={styles.botao} onPress={handleSave}>
-                <Text style={styles.botaoTexto}>Cadastrar</Text>
+                <Text style={styles.botaoTexto}>Enviar</Text>
             </TouchableOpacity>
         </KeyboardAvoidingView>
     )

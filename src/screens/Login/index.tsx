@@ -3,6 +3,8 @@ import { styles } from './style'
 import { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import api from '../../services/api'
+import { Feather } from '@expo/vector-icons'
+import { cores } from '../../styles/cores'
 
 export default function Login({ navigation }: any) {
     const [username, setUsername] = useState("")
@@ -37,6 +39,8 @@ export default function Login({ navigation }: any) {
 
     return (
         <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
+            <Feather name="user" size={100} color={cores.footer} style={{ margin: 0, textAlign: 'center' }} />
+
             <Text style={styles.titulo}>Login</Text>
 
             <TextInput

@@ -5,6 +5,7 @@ import api from '../../services/api'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useRoute, RouteProp } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons'
+import { cores } from '../../styles/cores'
 
 interface filmeData {
     id: number,
@@ -70,11 +71,12 @@ export default function Filmes() {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
             {nomeUsuario && (
                 <View style={styles.usuarioContainer}>
-                    <Feather name="user" size={20} color="#333" style={{ marginRight: 8 }} />
+                    <Feather name="user" size={30} color={cores.cardFundo} style={{ marginLeft: 20, paddingTop: 10 }} />
                     <Text style={styles.oláUsuario}>Olá, {nomeUsuario}</Text>
+                    <Image style={{width:100, height:100, marginLeft: 100}} source={require("../../../assets/LOGO PULSE SEM FUNDO.png")}/>
                 </View>
             )}
 

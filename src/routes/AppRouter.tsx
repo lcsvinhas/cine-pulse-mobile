@@ -13,8 +13,9 @@ export default function AppRouter() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: cores.primaria,
-        tabBarInactiveTintColor: cores.secundaria,
+        tabBarActiveBackgroundColor: cores.header,
+        tabBarInactiveBackgroundColor: cores.header,
+        tabBarActiveTintColor: cores.cardFundo,
       }}>
       <Tab.Screen name='Filmes' component={Filmes} options={{
         tabBarIcon: ({ color, size }) => {
