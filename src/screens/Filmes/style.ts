@@ -9,12 +9,12 @@ export const styles = StyleSheet.create({
     card: {
         flex: 1,
         margin: 8,
-        backgroundColor: cores.fundo,
+        backgroundColor: cores.card,
         borderRadius: 12,
         padding: 8,
         alignItems: 'center',
         elevation: 3,
-        shadowColor: cores.texto,
+        shadowColor: cores.sombra,
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.2,
         shadowRadius: 4,
@@ -34,11 +34,11 @@ export const styles = StyleSheet.create({
     },
     info: {
         fontSize: 14,
-        color: cores.gaveta,
+        color: cores.texto,
     },
     modalOverlay: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.6)', // um fundo preto semi-transparente para modal
+        backgroundColor: cores.modal,
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
@@ -46,7 +46,7 @@ export const styles = StyleSheet.create({
     modalContainer: {
         width: '90%',
         maxHeight: '80%',
-        backgroundColor: cores.fundo,
+        backgroundColor: cores.card,
         borderRadius: 12,
         padding: 20,
     },
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     },
     modalFechar: {
         marginTop: 16,
-        backgroundColor: cores.gaveta,
+        backgroundColor: cores.header,
         paddingVertical: 10,
         borderRadius: 8,
         alignItems: 'center',
@@ -78,11 +78,11 @@ export const styles = StyleSheet.create({
     oláUsuario: {
         fontSize: 22,
         fontWeight: '600',
-        color: '#1E90FF',
+        color: cores.texto,
         marginVertical: 16,
         textAlign: 'left',
         letterSpacing: 0.5,
-        textShadowColor: 'rgba(0,0,0,0.2)',
+        textShadowColor: cores.sombra,
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 2,
     }

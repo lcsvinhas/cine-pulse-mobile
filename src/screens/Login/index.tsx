@@ -1,7 +1,6 @@
 import { View, Text, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import { styles } from './style'
 import { useState } from 'react'
-import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import api from '../../services/api'
 
@@ -53,11 +52,14 @@ export default function Login({ navigation }: any) {
                 placeholder="Senha"
                 value={password}
                 onChangeText={setPassword}
-                secureTextEntry
             />
 
             <TouchableOpacity style={styles.botao} onPress={handleLogin}>
                 <Text style={styles.botaoTexto}>Entrar</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+                <Text style={styles.linkTexto}>Ainda não tem uma conta? Cadastre-se</Text>
             </TouchableOpacity>
         </KeyboardAvoidingView>
     )
