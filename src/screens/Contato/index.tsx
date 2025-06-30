@@ -1,48 +1,68 @@
 import { View, Text, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
 import { styles } from './style'
 import { useState } from 'react'
+import api from '../../services/api'
 
 export default function Contato() {
     const [nome, setNome] = useState("")
     const [email, setEmail] = useState("")
+    const [mensagem, setMensagem] = useState("")
 
-    function handleSave(): void {
-        if (!nome || !email) {
-            Alert.alert("Preencha os campos corretamente!")
+    async function handleSave() {
+        if (!nome || !email || !mensagem) {
+            Alert.alert("Preencha todos os campos!")
             return
         }
 
-        console.log(`Nome: ${nome}`)
-        console.log(`Email: ${email}`)
+        try {
+            const response = await api.post('contatos', {
+                nome,
+                email,
+                mensagem
+            })
 
-        Alert.alert("Contato enviado com sucesso!")
+            Alert.alert("Mensagem enviada com sucesso!")
 
-        setNome("")
-        setEmail("")
+            setNome("")
+            setEmail("")
+            setMensagem("")
+
+        } catch (error) {
+            console.error(error)
+            Alert.alert("Erro ao enviar mensagem.")
+        }
     }
 
     return (
         <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
-            <Text style={styles.titulo}>Entre em Contato</Text>
+            <Text style={styles.titulo}>Contato</Text>
 
             <TextInput
                 style={styles.input}
-                placeholder="Digite seu nome"
+                placeholder="Nome"
                 value={nome}
                 onChangeText={setNome}
+                autoCapitalize="words"
             />
 
             <TextInput
                 style={styles.input}
-                placeholder="Digite seu email"
+                placeholder="Email"
                 value={email}
                 onChangeText={setEmail}
-                keyboardType="email-address"
                 autoCapitalize="none"
             />
 
+            <TextInput
+                style={styles.input}
+                placeholder="Mensagem"
+                value={mensagem}
+                onChangeText={setMensagem}
+                autoCapitalize="sentences"
+            />
+
             <TouchableOpacity style={styles.botao} onPress={handleSave}>
-                <Text style={styles.botaoTexto}>Enviar</Text>
+                <Text style={styles.botaoTexto}>Cadastrar</Text>
             </TouchableOpacity>
         </KeyboardAvoidingView>
     )

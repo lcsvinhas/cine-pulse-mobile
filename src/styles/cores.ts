@@ -1,9 +1,11 @@
+import { Modal } from "react-native";
+
 export const cores = {
-    primaria: '#6371BF',
-    secundaria: '#A3BAD9',
-    terciaria: '#7E8C5E',
-    quarternaria: '#B9BF88',
-    gaveta: '#c3d3d2',
-    fundo: '#F2F2F2',
-    texto: 'black',
+    fundo: '#ABD2D9',
+    header: '#3A8B99',
+    footer: '#064F5C',
+    card: '#D9C0AB',
+    sombra: '#846348',
+    texto: '#332112',
+    modal: 'rgba(0,0,0,0.6)'
 }

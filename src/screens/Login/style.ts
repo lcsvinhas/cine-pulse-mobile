@@ -30,5 +30,11 @@ export const styles = StyleSheet.create({
     botaoTexto: {
         color: '#fff',
         fontWeight: 'bold'
+    },
+    linkTexto: {
+        marginTop: 15,
+        color: '#007BFF',
+        textAlign: 'center',
+        textDecorationLine: 'underline',
     }
 })
