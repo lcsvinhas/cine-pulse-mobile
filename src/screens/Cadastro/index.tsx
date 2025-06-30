@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { View, Text, Alert, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native'
 import api from '../../services/api'
 import { styles } from './style'
+import { cores } from '../../styles/cores'
+import { Feather } from '@expo/vector-icons'
 
 export default function Cadastro({ navigation }: any) {
   const [nome, setNome] = useState("")
@@ -33,6 +35,8 @@ export default function Cadastro({ navigation }: any) {
 
   return (
     <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
+      <Feather name="user" size={100} color={cores.footer} style={{ margin: 0, textAlign: 'center' }} />
+
       <Text style={styles.titulo}>Cadastro</Text>
 
       <TextInput
