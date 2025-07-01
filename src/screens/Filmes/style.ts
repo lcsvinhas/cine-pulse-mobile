@@ -80,10 +80,13 @@ export const styles = StyleSheet.create({
         backgroundColor: cores.header,
         flexDirection: 'row',
         alignItems: 'center',
+        paddingTop: 10
     },
     oláUsuario: {
         padding: 10,
         paddingTop: 20,
+        marginLeft: 50,
+        marginTop: 25,
         fontSize: 22,
         fontWeight: '400',
         color: cores.cardFundo,
@@ -93,6 +96,50 @@ export const styles = StyleSheet.create({
         textShadowColor: cores.modal,
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 2,
+        position: 'absolute',
+    },
+    adicionadoRecentementeContainer: {
+        paddingVertical: 10,
+        paddingHorizontal: 15
+    },
+
+    adicionadoTitulo: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        color: cores.texto,
+    },
+
+    recomendadoTitulo: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginTop: 20,
+        color: cores.texto,
+        paddingHorizontal: 5,
+        borderLeftWidth: 4,
+        borderLeftColor: cores.texto,
+        paddingLeft: 10,
+    },
+
+
+    bannerCard: {
+        marginRight: 10,
+        alignItems: 'center',
+    },
+
+    bannerImagem: {
+        width: 300,
+        height: 180,
+        borderRadius: 10,
+        resizeMode: 'cover',
+    },
+
+    bannerTitulo: {
+        marginTop: 5,
+        marginBottom: 5,
+        color: cores.texto,
+        textAlign: 'left',
+        width: 300,
     }
 })
 

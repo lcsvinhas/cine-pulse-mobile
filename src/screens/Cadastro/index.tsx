@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { View, Text, Alert, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native'
+import { View, Text, Alert, TouchableOpacity, KeyboardAvoidingView, TextInput, Image } from 'react-native'
 import api from '../../services/api'
 import { styles } from './style'
 import { cores } from '../../styles/cores'
@@ -34,37 +34,48 @@ export default function Cadastro({ navigation }: any) {
   }
 
   return (
-    <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
-      <Feather name="user" size={100} color={cores.footer} style={{ margin: 0, textAlign: 'center' }} />
+    <View style={{ flex: 1 }}>
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("../../../assets/LOGO PULSE SEM FUNDO.png")}
+          style={styles.logo}
+          resizeMode="contain"
+        />
+      </View>
+      <KeyboardAvoidingView style={styles.container} behavior={'padding'}>
 
-      <Text style={styles.titulo}>Cadastro</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Nome"
-        value={nome}
-        onChangeText={setNome}
-        autoCapitalize="words"
-      />
+        <Feather name="user" size={100} color={cores.footer} style={{ margin: 0, textAlign: 'center' }} />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-      />
+        <Text style={styles.titulo}>Cadastro</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Senha"
-        value={senha}
-        onChangeText={setSenha}
-      />
+        <TextInput
+          style={styles.input}
+          placeholder="Nome"
+          value={nome}
+          onChangeText={setNome}
+          autoCapitalize="words"
+        />
 
-      <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
-        <Text style={styles.botaoTexto}>Cadastrar</Text>
-      </TouchableOpacity>
-    </KeyboardAvoidingView>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          autoCapitalize="none"
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          value={senha}
+          onChangeText={setSenha}
+        />
+
+        <TouchableOpacity style={styles.botao} onPress={handleCadastro}>
+          <Text style={styles.botaoTexto}>Cadastrar</Text>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
+    </View>
   )
 }
