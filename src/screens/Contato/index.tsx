@@ -1,4 +1,4 @@
-import { View, Text, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
+import { View, Text, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Image } from 'react-native'
 import { styles } from './style'
 import { useState } from 'react'
 import api from '../../services/api'
@@ -36,38 +36,47 @@ export default function Contato() {
     }
 
     return (
-        <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
-            <Feather name="message-square" size={100} color={cores.footer} style={{ margin: 0, textAlign: 'center' }} />
+        <View style={{ flex: 1 }}>
+            <View style={styles.logoContainer}>
+                <Image
+                    source={require("../../../assets/LOGO PULSE SEM FUNDO.png")}
+                    style={styles.logo}
+                    resizeMode="contain"
+                />
+            </View>
+            <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
+                <Feather name="message-square" size={100} color={cores.footer} style={{ margin: 0, textAlign: 'center' }} />
 
-            <Text style={styles.titulo}>Contato</Text>
+                <Text style={styles.titulo}>Contato</Text>
 
-            <TextInput
-                style={styles.input}
-                placeholder="Nome"
-                value={nome}
-                onChangeText={setNome}
-                autoCapitalize="words"
-            />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Nome"
+                    value={nome}
+                    onChangeText={setNome}
+                    autoCapitalize="words"
+                />
 
-            <TextInput
-                style={styles.input}
-                placeholder="Email"
-                value={email}
-                onChangeText={setEmail}
-                autoCapitalize="none"
-            />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    value={email}
+                    onChangeText={setEmail}
+                    autoCapitalize="none"
+                />
 
-            <TextInput
-                style={styles.inputMensagem}
-                placeholder="Mensagem"
-                value={mensagem}
-                onChangeText={setMensagem}
-                autoCapitalize="sentences"
-            />
+                <TextInput
+                    style={styles.inputMensagem}
+                    placeholder="Mensagem"
+                    value={mensagem}
+                    onChangeText={setMensagem}
+                    autoCapitalize="sentences"
+                />
 
-            <TouchableOpacity style={styles.botao} onPress={handleSave}>
-                <Text style={styles.botaoTexto}>Enviar</Text>
-            </TouchableOpacity>
-        </KeyboardAvoidingView>
+                <TouchableOpacity style={styles.botao} onPress={handleSave}>
+                    <Text style={styles.botaoTexto}>Enviar</Text>
+                </TouchableOpacity>
+            </KeyboardAvoidingView>
+        </View>
     )
 }

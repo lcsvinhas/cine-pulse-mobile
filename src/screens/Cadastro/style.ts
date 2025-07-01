@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         justifyContent: 'center',
-        backgroundColor: cores.fundo
+        backgroundColor: cores.fundo,
     },
     titulo: {
         fontSize: 24,
@@ -46,5 +46,18 @@ export const styles = StyleSheet.create({
         color: '#007BFF',
         textAlign: 'center',
         textDecorationLine: 'underline',
+    },
+    logoContainer: {
+        alignItems: 'flex-end',
+        padding: 16,
+        backgroundColor: cores.fundo
+    },
+    logo: {
+        width: 60,
+        height: 60,
+        position: 'absolute',
+        top: 25,
+        right: 5,
+        zIndex: 10,
     }
 })

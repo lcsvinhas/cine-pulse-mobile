@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useRoute, RouteProp } from '@react-navigation/native'
 import { Feather } from '@expo/vector-icons'
 import { cores } from '../../styles/cores'
+import { ScrollView } from 'moti'
 
 interface filmeData {
     id: number,
@@ -36,7 +37,6 @@ export default function Filmes() {
     const [modalVisible, setModalVisible] = useState(false)
     const [filmeSelecionado, setFilmeSelecionado] = useState<filmeData | null>(null)
     const [nomeUsuario, setNomeUsuario] = useState("")
-
 
     useEffect(() => {
         const buscar = async () => {
@@ -76,9 +76,11 @@ export default function Filmes() {
                 <View style={styles.usuarioContainer}>
                     <Feather name="user" size={30} color={cores.cardFundo} style={{ marginLeft: 20, paddingTop: 10 }} />
                     <Text style={styles.oláUsuario}>Olá, {nomeUsuario}</Text>
-                    <Image style={{width:100, height:100, marginLeft: 100}} source={require("../../../assets/LOGO PULSE SEM FUNDO.png")}/>
+                    <Image style={{ width: 60, height: 60, marginLeft: 270, marginTop: 15 }} source={require("../../../assets/LOGO PULSE SEM FUNDO.png")} />
                 </View>
             )}
+
+
 
 
             <FlatList
@@ -86,10 +88,32 @@ export default function Filmes() {
                 keyExtractor={(item) => item.id.toString()}
                 numColumns={2}
                 contentContainerStyle={styles.grid}
+                ListHeaderComponent={
+                    <View style={styles.adicionadoRecentementeContainer}>
+                        <Text style={styles.adicionadoTitulo}>Adicionados recentemente</Text>
+                        <ScrollView horizontal>
+                            {filmes.slice(-5).reverse().map((filme) => (
+                                <TouchableOpacity
+                                    key={filme.id}
+                                    onPress={() => abrirModal(filme)}
+                                    style={styles.bannerCard}
+                                >
+                                    <Image
+                                        source={{ uri: `${api.defaults.baseURL}/filmes/${filme.id}/foto` }}
+                                        style={styles.bannerImagem}
+                                    />
+                                    <Text style={styles.bannerTitulo}>{filme.titulo}</Text>
+                                </TouchableOpacity>
+                            ))}
+                        </ScrollView>
+                        <Text style={styles.recomendadoTitulo}>Recomendados para você</Text>
+                    </View>
+                }
+
                 renderItem={({ item }) => (
                     <TouchableOpacity style={styles.card} onPress={() => abrirModal(item)}>
                         <Image
-                            source={{ uri: `http://192.168.100.179:8080/filmes/${item.id}/foto` }}
+                            source={{ uri: `${api.defaults.baseURL}/filmes/${item.id}/foto` }}
                             style={styles.capa}
                         />
                         <Text style={styles.titulo}>{item.titulo}</Text>

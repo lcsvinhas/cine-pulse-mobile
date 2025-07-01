@@ -1,4 +1,4 @@
-import { View, Text, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native'
+import { View, Text, Alert, TouchableOpacity, TextInput, KeyboardAvoidingView, Image } from 'react-native'
 import { styles } from './style'
 import { useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -29,7 +29,7 @@ export default function Login({ navigation }: any) {
 
             Alert.alert("Login realizado com sucesso!")
 
-            navigation.navigate('Filmes', { userId: id.toString() })
+            navigation.replace('AppRouter')
 
         } catch (error) {
             console.error(error)
@@ -38,33 +38,42 @@ export default function Login({ navigation }: any) {
     }
 
     return (
-        <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
-            <Feather name="user" size={100} color={cores.footer} style={{ margin: 0, textAlign: 'center' }} />
+        <View style={{ flex: 1 }}>
+            <View style={styles.logoContainer}>
+                <Image
+                    source={require("../../../assets/LOGO PULSE SEM FUNDO.png")}
+                    style={styles.logo}
+                    resizeMode="contain"
+                />
+            </View>
+            <KeyboardAvoidingView behavior={'padding'} style={styles.container}>
+                <Feather name="user" size={100} color={cores.footer} style={{ margin: 0, textAlign: 'center' }} />
 
-            <Text style={styles.titulo}>Login</Text>
+                <Text style={styles.titulo}>Login</Text>
 
-            <TextInput
-                style={styles.input}
-                placeholder="Usuário"
-                value={username}
-                onChangeText={setUsername}
-                autoCapitalize="none"
-            />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Usuário"
+                    value={username}
+                    onChangeText={setUsername}
+                    autoCapitalize="none"
+                />
 
-            <TextInput
-                style={styles.input}
-                placeholder="Senha"
-                value={password}
-                onChangeText={setPassword}
-            />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Senha"
+                    value={password}
+                    onChangeText={setPassword}
+                />
 
-            <TouchableOpacity style={styles.botao} onPress={handleLogin}>
-                <Text style={styles.botaoTexto}>Entrar</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.botao} onPress={handleLogin}>
+                    <Text style={styles.botaoTexto}>Entrar</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
-                <Text style={styles.linkTexto}>Ainda não tem uma conta? Cadastre-se</Text>
-            </TouchableOpacity>
-        </KeyboardAvoidingView>
+                <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
+                    <Text style={styles.linkTexto}>Ainda não tem uma conta? Cadastre-se</Text>
+                </TouchableOpacity>
+            </KeyboardAvoidingView>
+        </View>
     )
 }
