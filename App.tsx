@@ -7,7 +7,8 @@ import SplashScreen from './src/screens/SplashScreen';
 import { useEffect, useState } from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import { Modal, Text, StyleSheet, View } from 'react-native';
-import Filmes from './src/screens/Filmes';
+import Animated, { BounceInDown, BounceOutUp, FadeOut } from 'react-native-reanimated'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -28,13 +29,13 @@ export default function App() {
         transparent={true}
         visible={isConnected === false}
       >
-        <View style={styles.modalContainer}>
+        <Animated.View style={styles.modalContainer} entering={BounceInDown} exiting={FadeOut}>
           <View style={styles.modalContent}>
             <Text style={{ color: 'white', fontWeight: 'bold' }}>
               Sem conexão com a internet
             </Text>
           </View>
-        </View>
+        </Animated.View>
       </Modal>
 
       <NavigationContainer>
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   modalContent: {
     backgroundColor: 'red',
     padding: 16,
-    marginBottom: 50,
+    marginBottom: 700,
     borderRadius: 8,
   },
 });
